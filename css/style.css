@@ -1,1 +1,13 @@
 /* nosso estilo css */
+
+@charset "utf8";
+
+body{
+    margin-top: 40px;
+    padding-top: 40px;
+
+}
+.fundo-fixo{
+    background: url(../images/fundo-fixo.jpg) no-repeat fixed ;
+    -webkit-background-size: cover;
+}
