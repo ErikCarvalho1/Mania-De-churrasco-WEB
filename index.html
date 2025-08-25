@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
-     <link rel="stylesheet" href="css/style.css"> 
-    
+  <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- Bootstrap 5.3 local  - totalmente moderno e atualizado! -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- CSS local (Nosso) -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Bootstrap JS com parametro defer, que permite a execução js após o carregamento DOM -->
+    <script src="js/bootstrap.min.js" defer></script>
+    <script src="js/bootstrap.bundle.min.js" defer></script>
 
     <title>Mania de Churrasco</title>
  </head>
  <body class="fundo-fixo">
+    <header>
+
+
         <!-- area de menu ----- um dia sera em arquivo externo...  -->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
             <div class="container-fluid">
-                <a href="index.html" class="navbar-brand">
+                <a href="index.html" class="navbar-brand"> 
                     <img src="images/Logo Mania.png" alt="LogoTipo " width="190"/>
                 </a>
                 <button 
@@ -73,7 +81,35 @@
                 </div>
             </div>
         </nav>
+
+        
+    </header>
         <main class="container" >
+            <section>
+                <!-- Carousel -->
+                 <div id="carouselExampleFade" class="carousel slide carousel-fade">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="images/banner1 (1).png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="images/banner2.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="images/banner3.png" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+            </section>
+
             <section>
                 <h2 class="alert alert-success">Produtos</h2>
                 <div class="row">
@@ -150,17 +186,66 @@
                     </a>  
                         </address>
                         <div class="ratio ratio-4x3">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20692.344004566858!2d-46.45294067687797!3d-23.535228878768706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce672d406299f5%3A0xbebe25f2ae84e877!2sCroma%20Burguers%20%7C%20Itaquera!5e0!3m2!1spt-BR!2sbr!4v1755874042779!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20692.344004566858!2d-46.45294067687797!3d-23.535228878768706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce672d406299f5%3A0xbebe25f2ae84e877!2sCroma%20Burguers%20%7C%20Itaquera!5e0!3m2!1spt-BR!2sbr!4v1755874042779!5m2!1spt-BR!2sbr"
+                             width="600" height="450" style="border:0;" allowfullscreen="" 
+                             loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                 </div>
 
             </div>    <!--  final coluna endereço e mapa-->
           <div class="col-md-4 col-sm-6 mb-4">
+            <h4>links</h4>
+            <ul class="nav flex-column">
+                <li class="nav-item"><a href="index.html#home" class="nav-link text-white ps-0">
+                    <i class="bi bi-house-fill"></i>    Home</a></li>
+                <li class="nav-item"><a href="index.html#destaques" class="nav-link text-white ps-0">  <i class="bi bi-star-fill"></i>Destaques</a></li>
+                <li class="nav-item"><a href="index.html#produtos" class="nav-link text-white ps-0">  <i class="bi bi-basket-fill"></i>Produtos</a></li>
+                <li class="nav-item"><a href="index.html#contato" class="nav-link text-white ps-0">  <i class="bi bi-envelope-fill"></i> Contato</a></li>
+                <li class="nav-item"><a href="admin/index.html" class="nav-link text-white ps-0">  <i class="bi bi-person-circle"></i> Administração</a></li>
+                  <li class="nav-item"><a href="https://www.sp.senac.br/sites " target="_blank" class="nav-link text-white ps-0">  <i class="bi bi-globe-americas"></i>senac</a></li>
+            </ul>
+        </div>  <!-- final coluna dos menus do footer -->
+           <div class="col-md-4 col-sm-6 mb-4">
+                <h4>Contato</h4>
+                <form method="post" action="index.html">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                            <input type="text" nome="nome-contato" placeholder="Digite seu nome" class="form-control" required>
+                       
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="i bi bi-envelope-fill"></i>
+                            </span>
+                            <input type="email" class="form-control" name="email_contato" placeholder="digite seu email" required>
+                       </div>    
+                 </div>
+               </form>
+              
+                
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">
+                    <i class="bi bi-pencil-fill"></i>
+                </span>
+                <textarea name="comentario-contato" rows="4" placeholder="Digite seu comentario " class="form-control "required></textarea>
+            </div>
+                    </div>
+                    <button class="btn btn-danger w-100" type="submit" name="btn_enviar">
+                       Envair <i class="bi-send-fill"></i>
+                     </button>
+                </form>
+           </div><!-- final coluna formulario contato -->
            
-          </div>  <!-- final coluna dos menus dp footer -->
+         <div class="col-12 text-center center border-top border-secondary pt-3 mt-3">
+            <p class="text-white-50">
+                Desenvolvido por Erik Carvalho da Silva™ 2025
+            </p> <br>
+            <a href="https://github.com/ErikCarvalho1?tab=repositories" class="text-white">ErikCarvalho.com.br</a>
+            <!-- final linha fechmento rodapé -->
+         </div>
         </footer>
 
 
 
-     <script src="js/bootstrap.min.js" defer></script>
+
  </body>
 </html>
