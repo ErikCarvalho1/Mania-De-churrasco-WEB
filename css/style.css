@@ -2,11 +2,11 @@
 
 @charset "utf8";
 
-
+/* 
 .fundo-fixo{
     background: url(../images/fundo-fixo.jpg) no-repeat fixed ;
     -webkit-background-size: cover;
-}
+} */
 nav{
     background-color: rgba(126, 64, 29, 0.288);
 }
