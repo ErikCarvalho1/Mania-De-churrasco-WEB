@@ -2,18 +2,17 @@
 
 include "class/db.php";
 
+
 $pdo = getConnection();
 $tipo_lista = $pdo->query("select * from tipos");
 $tipos = $tipo_lista->fetchAll();
-
-//print_r($rows);
 
 
 ?>
 
 <nav class="navbar navbar-expand-md navbar-dark fixed-top">
             <div class="container-fluid">
-                <a href="index.html" class="navbar-brand"> 
+                <a href="index.php" class="navbar-brand"> 
                     <img src="images/Logo Mania.png" alt="LogoTipo " width="190"/>
                 </a>
                 <button 
@@ -45,7 +44,7 @@ $tipos = $tipo_lista->fetchAll();
                             
                             <ul class="dropdown-menu dropdown-menu-dar">
                                 <?php foreach ($tipos as $tipo):?>
-                                <li><a href="produtos_por_tipo.php?tipo_id=1<?= Tipo['id'];?> " class="dropdown-item" <?=$tipo['rotulo']?>></a></li>
+                                <li><a href="produtos_por_tipo.php?tipo_id=1<?= $tipo['id'];?> " class="dropdown-item" <?=$tipo['rotulo']?>></a></li>
                                 <?php endforeach;?>
                             
                             </ul>

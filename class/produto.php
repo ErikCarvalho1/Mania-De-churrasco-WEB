@@ -2,7 +2,7 @@
 include_once "db.php";
  
 // POO com PHP (Classes PHP)
-class Porduto{
+class Produto{
     // atributos
  
     private $id;
@@ -11,7 +11,7 @@ class Porduto{
     private $resumo;
     private $valor;
     private $imagem;
-    private $destaques;
+    private $destaque;
     private $pdo;
     public function __construct(){
         $this->pdo = getConnection();// realiza a conexão durante a criação da instancia (objeto)
@@ -50,10 +50,10 @@ class Porduto{
  
     }
             public function getDestaques(){// get funçao de usuario
-        return $this->  destaques;
+        return $this->  destaque;
     }
-    public function setDestaques(bool $destaques){
-        $this -> destaques = $destaques;
+    public function setDestaques(bool $destaque){
+        $this -> destaque = $destaque;
  
     }
 
@@ -71,7 +71,7 @@ class Porduto{
         $cmd->bindValue(":resumo", $this->$resumo);
         $cmd->bindValue(":valor", $this->$valor);
         $cmd->bindValue(":imagem", $this->$imagem);
-        $cmd->bindValue(":destaques", $this->$destaques);
+        $cmd->bindValue(":destaques", $this->$destaque);
         $cmd->execute();
         if ($cmd->execute()) {
             $this->id = $this->pdo->lastInsertId();
@@ -81,8 +81,13 @@ class Porduto{
         return false;
     }
     // listando usuarios
-    public function listar(): array {
-        $cmd = $this->pdo->query("select * from vw_prdutos order by id DESC");
+    public function listar(int $destaque = 0 ): array {
+        if($destaque == 0)
+        $cmd = $this->pdo->query("select * from vw_produtos order by id DESC");
+    elseif($destaque == 1){
+        $cmd = $this->pdo->query("select * from vw_produtos where destaque = 1 order by id DESC");
+    }
+        
         return $cmd->fetchAll(PDO::FETCH_ASSOC);// retorna uma matriz associativa de 2 dimensoes
     }
     // buscar usuario por id
@@ -122,7 +127,7 @@ class Porduto{
         $cmd->bindValue(":resumo", $this->$resumo);
         $cmd->bindValue(":valor", $this->$valor);
         $cmd->bindValue(":imagem", $this->$imagem);
-        $cmd->bindValue(":destaques", $this->$destaques);
+        $cmd->bindValue(":destaques", $this->$destaque);
          $cmd->bindValue(":id", $this->$id, PDO::PARAM_INT);
         $cmd->execute();
  

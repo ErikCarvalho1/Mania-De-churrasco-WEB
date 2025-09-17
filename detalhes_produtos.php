@@ -26,11 +26,14 @@
      <?php include "menu_publico.php"?>
     </header>
     <main class = "container" >  
-        <!-- area de carousel  -->
-         <?php include "carousel.php"?>
-         <!-- area de destaque   -->
-          <a class="pt-6" name="destaques">&nbsp;</a>
-          <?php include "destaques.php";?>
+    <h2 class="alert alert-danger">
+        <a href="index.php" class="text-decoration-none">
+            <button class="btn btn-danger">
+                <span class="bi bi-chevron-left"></span>
+            </button>
+            <strong>Detalhes do Produto</strong>
+        </a>
+    </h2>
     </main>
  </body>
  
