@@ -1,6 +1,6 @@
 <?php 
 
-include "class/db.php";
+include_once "class/db.php";
 
 
 $pdo = getConnection();
@@ -37,7 +37,7 @@ $tipos = $tipo_lista->fetchAll();
                             <a href="#" class="nav-link">DESTAQUES</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">PRODUTOS</a>
+                            <a href="produtos" class="nav-link">PRODUTOS</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">TIPOS</a>

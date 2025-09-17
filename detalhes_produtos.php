@@ -1,5 +1,12 @@
+<?php 
+include_once  "class/produto.php";
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    $produto = new Produto();
+    $prod = $produto->buscarprodutoId($id);
+}
 
-
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -24,16 +31,45 @@
     <header>
     <!-- área de menu -->
      <?php include "menu_publico.php"?>
-    </header>
-    <main class = "container" >  
+        </header>
+        <main class = "container" >  
     <h2 class="alert alert-danger">
         <a href="index.php" class="text-decoration-none">
             <button class="btn btn-danger">
                 <span class="bi bi-chevron-left"></span>
             </button>
-            <strong>Detalhes do Produto</strong>
+           <strong>Detalhes do Produto -  </strong><?=$prod['descricao']?>
+         
         </a>
     </h2>
+    <div class="cool-sm-12 col-md-12">
+      <div class="col-sm-6 col-md-4 mb-4">
+                        <div class="card">
+                            <img s src="images/<?=$prod['imagem'] ?>"
+                             alt = "<?=$prod['descricao'] ?>"
+                              class="card-img-top">
+                            <div class="card-body bg-success text-whith">
+                                <h3 class="card-title text-danger">
+                                    <strong><i><?=$prod['descricao']?></i></strong>
+                                </h3>
+                                <p class="text-warning"><strong><?=$prod['rotulo'] ?></strong>
+                                <p class="card-text text-start">
+                                    <?=($prod['resumo']) ?>
+                                </p>
+                                </p>
+                                <button class="btn btn-default disabled" role="button" style="cursor: default;">
+                                    <?="R$ ".number_format($prod['valor'],2,',','.')?>
+
+                                </button>
+                             
+                        </div>
+                        </div>
+                    </div><!-- termina o card produto -->
+                 
+                  
+                
+                </div>
+    </div>
     </main>
  </body>
  

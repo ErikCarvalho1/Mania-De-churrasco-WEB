@@ -56,6 +56,13 @@ class Produto{
         $this -> destaque = $destaque;
  
     }
+                public function getDescricao(){// get funçao de usuario
+        return $this->  descricao;
+    }
+    public function setDescricao(bool $descricao){
+        $this -> descricao = $descricao;
+ 
+    }
 
   
   
@@ -83,31 +90,32 @@ class Produto{
     // listando usuarios
     public function listar(int $destaque = 0 ): array {
         if($destaque == 0)
-        $cmd = $this->pdo->query("select * from vw_produtos order by id DESC");
+        $cmd = $this->pdo->query("SELECT * from vw_produtos order by id DESC");
     elseif($destaque == 1){
-        $cmd = $this->pdo->query("select * from vw_produtos where destaque = 1 order by id DESC");
+        $cmd = $this->pdo->query("SELECT * from vw_produtos where destaque = 1 order by id DESC");
     }
         
         return $cmd->fetchAll(PDO::FETCH_ASSOC);// retorna uma matriz associativa de 2 dimensoes
     }
     // buscar usuario por id
-    public function buscarprodutoId(int $id):bool  {
-        $sql = "selct * from produtos where id = :id";
+    public function buscarprodutoId(int $id):array{
+        $sql = "select * from vw_produtos where id = :id";
         $cmd =  $this->pdo->prepare($sql);
         $cmd -> bindValue(":id", $id);
         $cmd->execute();
-        if($cmd -> rowCount() > 0){
-            $dados = $cmd->fetch(PDO::FETCH_ASSOC);// apenas de uma dimensão
-            $this -> id = $dados['id'];
-            $this -> TipoId = $dados[ 'tipo_id'];
-            $this -> descricao = $dados ['descricao'];
-            $this -> resumo = $dados  ['resumo'];
-             $this -> valor = $dados  ['valor'];
-              $this -> imagem = $dados  ['imagem'];
-               $this -> destaque = $dados  ['destaque'];
-            return true;
-        }
-        return false;
+        $dados = $cmd->fetchAll();
+        // if($cmd -> rowCount() > 0){
+        //     $dados = $cmd->fetch(PDO::FETCH_ASSOC);// apenas de uma dimensão
+        //     $this -> id = $dados['id'];
+        //     $this -> TipoId = $dados[ 'tipo_id'];
+        //     $this -> descricao = $dados ['descricao'];
+        //     $this -> resumo = $dados  ['resumo'];
+        //      $this -> valor = $dados  ['valor'];
+        //       $this -> imagem = $dados  ['imagem'];
+        //        $this -> destaque = $dados  ['destaque'];
+        //     return $this;
+        // }
+        return $dados;
  
     }
     // Atualizar usuario

@@ -31,6 +31,9 @@
          <!-- area de destaque   -->
           <a class="pt-6" name="destaques">&nbsp;</a>
           <?php include "destaques.php";?>
+          <!-- area geral dos produtos -->
+           <a class="pt-6" name="produtos">&nbsp;</a>
+          <?php include "produtos_geral.php";?>
     </main>
  </body>
  
