@@ -76,7 +76,7 @@ ALTER TABLE `produtos`
     ON DELETE no action
     ON UPDATE no action;  
 -- Criando a view vw_produtos
-
+update produtos set destaque = 1 where id = 6;
 CREATE VIEW vw_produtos AS
   SELECT  p.id,
       p.tipo_id,
@@ -92,6 +92,6 @@ CREATE VIEW vw_produtos AS
   WHERE p.tipo_id=t.id;
 COMMIT;
 
-update produtos set destaque = 1 where id = 6;
+
 
 
