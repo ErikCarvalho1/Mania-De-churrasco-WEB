@@ -1,12 +1,41 @@
+       
 <?php 
-include_once "class/produto.php";
-$produto = new Produto();
-$produtos = $produto->listar(); 
-
-
-$linha = count($produtos);
-
+if(isset($_GET['buscar'])){
+    $busca = $_GET['buscar'];
+    include_once "class/produto.php";
+    $produto = new Produto();
+    $produtos = $produto->buscarPorstring(  $busca); 
+    $linha = count($produtos);
+}
 ?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- Bootstrap 5.3 local  - totalmente moderno e atualizado! -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- CSS local (Nosso) -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Bootstrap JS com parametro defer, que permite a execução js após o carregamento DOM -->
+    <script src="js/bootstrap.min.js" defer></script>
+    <script src="js/bootstrap.bundle.min.js" defer></script>
+
+    <title>Mania de Churrasco</title>
+ </head>
+ <body class="fundo-fixo">
+    <header>
+    <!-- área de menu -->
+     <?php include "menu_publico.php"?>
+    </header>
+    <main class = "container" >  
+
 <section>
    
 <!-- mostra se a consulta retornar vazio  -->
@@ -17,7 +46,7 @@ $linha = count($produtos);
  <?php } ?>
 
 <?php if($linha > 0 ){?>
-<h2 class="alert alert-danger
+<h2 class="alert alert-primary
                 ">Produtos Em Destaques</h2>
                 <div class="row">
                     <?php  foreach($produtos as $prod):?>
@@ -55,3 +84,12 @@ $linha = count($produtos);
                 </div>
                 <?php }?>
             </section>
+    </main>
+     <!-- rodape -->
+             <footer class="container-fluid ps-4 bg-dark text-white p-4 rounded-top" id="CONTATO">
+           <a  name="contato"></a>
+           <?php  include "rodape.php";?>
+            </footer>
+ </body>
+ 
+ </html>

@@ -1,13 +1,13 @@
 /* nosso estilo css */
 
-@charset "utf8";
+/* @charset "utf8"; */
 
 /* 
 .fundo-fixo{
     background: url(../images/fundo-fixo.jpg) no-repeat fixed ;
     -webkit-background-size: cover;
 } */
-nav{
+/* nav{
     background-color: rgba(126, 64, 29, 0.288);
 }
 
@@ -17,4 +17,4 @@ main{
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 4px 4px 8px rgba(0,0,0,0.2);
     
-}
+} */

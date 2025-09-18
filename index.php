@@ -34,7 +34,14 @@
           <!-- area geral dos produtos -->
            <a class="pt-6" name="produtos">&nbsp;</a>
           <?php include "produtos_geral.php";?>
+         
+           
     </main>
+      <!-- rodape -->
+        <footer class="container-fluid ps-4 bg-dark text-white p-4 rounded-top" id="CONTATO">
+           <a  name="contato"></a>
+           <?php  include "rodape.php";?>
+            </footer>
  </body>
  
  </html>
