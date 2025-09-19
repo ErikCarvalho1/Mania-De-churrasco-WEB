@@ -1,7 +1,28 @@
+<?php 
 
+require_once "../class/usuario.php";
+if( $_POST){
+  $login = $_POST['login'];
+  $senha = $_POST['senha'];
+  $user = new Usuario();
+  $usuarioLogado = $user->efetuarLogin($login, $senha);
+  if(count($usuarioLogado) > 0 ){
+    if(!isset($_SESSION)){
+      session_name('maniaa');
+      session_start();
+    }
+    $_SESSION['login_usuario'] = $usuarioLogado['login'];
+     $_SESSION['nivel_usuario'] = $usuarioLogado['nivel'];
+     $_SESSION['nome_da_sessao'] = session_name();
+     if($usuarioLogado['nivel'] == "adm"){
+      echo "<script>window.open('index.php','_self')</>";
+     } elseif($usuairoLogado['nivel']== "cli"){
+      echo "<script>window.open('../cliente.php','_self')</>";
+     }
+  }
+}
 
-
-
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,8 +39,8 @@
     <!-- CSS local (Nosso) -->
     <link rel="stylesheet" href="../css/style.css" />
     <!-- Bootstrap JS com parametro defer, que permite a execução js após o carregamento DOM -->
-    <script src="js/bootstrap.min.js" defer></script>
-    <script src="js/bootstrap.bundle.min.js" defer></script>
+    <script src="../js/bootstrap.min.js" defer></script>
+    <script src="../js/bootstrap.bundle.min.js" defer></script>
 
     <title>Mania de Churrasco</title>
  </head>

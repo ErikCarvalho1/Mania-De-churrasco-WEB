@@ -112,7 +112,7 @@ class Usuario{
 
         //efetuarlogin
         public function efetuarLogin(string $loginInformado, string $senhaInformada):array {
-        $sql = "selct * from usuarios where login = :login end senha = md5(:senha)";
+        $sql = "select * from usuarios where login = :login and senha = md5(:senha)";
         $cmd =  $this->pdo->prepare($sql);
         $cmd -> bindValue(":login", $loginInformado);
          $cmd -> bindValue(":senha", $senhaInformada);

@@ -46,7 +46,7 @@ if(isset($_GET['buscar'])){
  <?php } ?>
 
 <?php if($linha > 0 ){?>
-<h2 class="alert alert-primary
+<h2 class="alert  alert-primary
                 ">Produtos Em Destaques</h2>
                 <div class="row">
                     <?php  foreach($produtos as $prod):?>
