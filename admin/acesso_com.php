@@ -3,6 +3,7 @@
 //1 - definir nome da sessão 
 session_name('maniaa');
 session_start();
+.
 //2 - Segurança: Verificar  se a sessão é Válida
 if(!isset($_SESSION['login_usuario'])){
     // Usuario não logado, redireciona oara  atela de login 
@@ -17,6 +18,18 @@ if(!isset($_SESSION['nome_da_sessao'])){
     header('locatio: login.php');
 }
 //4 - segurança Extra: Valida o agente (usuario) e o IP
-
+if(!isset($_SESSION['ip_usuairo'])){
+    $_SESSION['ip_usuairo'] = $_SERVER['REMOTE_ADDR'];
+}
+if(!isset($_SESSION['user_agent'])){
+    $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+}
 //5 - se IP ou navegador mudarem, invalida asessão
+if($_SESSION['ip_usuairo'] !== $_SERVER['HTTP_USER_AGENT'] ||
+ $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT']){
+    session_destroy();
+    header('login.php0');
+    exit;
+ }
+
 ?>

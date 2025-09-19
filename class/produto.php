@@ -137,7 +137,7 @@ class Produto{
             return $cmd->execute();
         }
         //  busca por tipo_id
-         public function buscarPorTipoId(int $id):array{
+         public function buscarPorTipoId(int $tipoId):array{
         $sql = "select * from vw_produtos where tipo_id = :tipo_id";
         $cmd = $this->pdo->prepare($sql);
         $cmd->bindValue(":tipo_id", $tipoId);
