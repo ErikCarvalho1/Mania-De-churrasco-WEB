@@ -79,8 +79,7 @@ class Produto{
         elseif ($destaque == 1) {
             $cmd = $this->pdo->query("select * from vw_produtos where destaque = 1 order by id desc");
         }
-
-        return $cmd->fetchAll(PDO::FETCH_ASSOC);
+        return $cmd->fetchAll(PDO::FETCH_ASSOC); // pode retornar nenhum ou mais de um produto
     }
     // buscar produtos por id 
     public function buscarPorId(int $id):array{
@@ -88,7 +87,7 @@ class Produto{
         $cmd = $this->pdo->prepare($sql);
         $cmd->bindValue(":id", $id);
         $cmd->execute();
-        $dados = $cmd->fetch();
+        $dados = $cmd->fetch(); // pode retornar nenhum ou apenas um produto
         // if($cmd->rowCount() > 0){
         //     $dados = $cmd->fetch(PDO::FETCH_ASSOC);
         //     $this->id = $dados['id'];
@@ -102,6 +101,26 @@ class Produto{
         // }
         return $dados;
     }
+
+        // buscar produtos por tipo_id 
+        public function buscarPorTipoId(int $tipoId):array{
+            $sql = "select * from vw_produtos where tipo_id = :tipo_id";
+            $cmd = $this->pdo->prepare($sql);
+            $cmd->bindValue(":tipo_id", $tipoId);
+            $cmd->execute();
+            $dados = $cmd->fetchAll(); // pode retornar nenhum ou mais de um produto
+            return $dados;
+        }
+        // buscar produtos por texto na descrição ou no resumo 
+        public function buscarPorString(string $busca):array{
+            $sql = "select * from vw_produtos where descricao like '%$busca%'
+            or resumo like '%$busca%' 
+            order by descricao asc ";
+            $cmd = $this->pdo->prepare($sql);
+            $cmd->execute();
+            $dados = $cmd->fetchAll();// pode retornar nenhum ou mais de um produto
+            return $dados;
+        }
         // Atualizar produto
         public function atualizar(int $idUpdate):bool {
             $id = $idUpdate;
@@ -136,27 +155,6 @@ class Produto{
             $cmd->bindValue(":id", $this->id, PDO::PARAM_INT);
             return $cmd->execute();
         }
-        //  busca por tipo_id
-         public function buscarPorTipoId(int $tipoId):array{
-        $sql = "select * from vw_produtos where tipo_id = :tipo_id";
-        $cmd = $this->pdo->prepare($sql);
-        $cmd->bindValue(":tipo_id", $tipoId);
-        $cmd->execute();
-        $dados = $cmd->fetchAll();
-        return $dados;
-    }
-
-
-           //  busca por texto na descrição ou no resumo 
-         public function buscarPorstring(string $busca):array{
-        $sql = "select * from vw_produtos where descricao like '%$busca%' or resumo like '%$busca%' order by descricao asc" ;
-        $cmd = $this->pdo->prepare($sql);
-  
-        $cmd->execute();
-        $dados = $cmd->fetchAll();//pode retornar nenhum ou mais de um produto  
-        return $dados;
-    }
-
 
 }
 

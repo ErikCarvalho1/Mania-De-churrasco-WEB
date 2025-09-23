@@ -1,14 +1,13 @@
 <?php
  include 'acesso_com.php';
- include_once '../class/produto.php';
- $produto = new Produto();
- $produtos = $produto->listar();
- $linhas = count($produtos);
-
-
-
+ include_once '../class/tipo.php';
+ $tipo = new Tipo();
+ $tipo = $tipo->listarTipo();
+ $linhas = count($tipo);
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -28,13 +27,11 @@
             <thead class="table-dark">
                 <tr>
                     <th class="d-none">ID</th>
-                    <th>TIPO</th>
-                    <th>DESCRIÇÃO</th>
-                    <th>RESUMO</th>
-                    <th>VALOR</th>
-                    <th>IMAGEM</th>
+                    <th>sigla</th>
+                    <th>rotulo</th>
+                
                     <th>
-                        <a href="produtos_insere.php" target="_self" class="btn btn-primary btn-sm w-100">
+                        <a href="tipos_insere.php" target="_self" class="btn btn-primary btn-sm w-100">
                             <i class="bi bi-plus-circle"></i>
                             <span class="d-none d-sm-inline"> ADICIONAR</span>
                         </a>
@@ -43,33 +40,20 @@
             </thead>
            
             <tbody>
-                 <?php foreach($produtos as $prod):?> 
+                 <?php foreach($tipo as $prod):?> 
                     <tr>
                         <td class="d-none">
                             <?=$prod['id']?>
                         </td>
                         <td>
-                           <?=$prod['rotulo']?>
+                           <?=$prod['sigla']?>
                         </td>
                         <td>
-                           <?php 
-                            if($prod['destaque']){
-                                echo '<i class = "bi bi-stra-fill text-danger"></i>';
-                            }else{
-                                echo '<i class = "bi bi-check-circle-fill text-succes"></i>';
-                            }
-                            echo '&nbsp;'.$prod['descricao'];
-                           ?>
+                            <?=$prod['rotulo']?>
                         </td>
-                        <td>
-                           <?= $prod['resumo']?>
-                        </td>
-                        <td>
-                           <?= number_format($prod['valor'], 2 , ',' , '.')?>
-                        </td>
-                        <td>
-                            <img src="../images/<?=$prod['imagem']?>" width="= 200" class="img-fluid rounded">
-                        </td>
+                        
+                        
+                       
                         <td>
                             <a href="produtos_atualiza.php?id=<?= $prod['id']; ?>"
                                class="btn btn-warning btn-sm w-100 mb-1">
@@ -80,10 +64,10 @@
                            
  
                             <button
-                                data-nome="<?= $prod['descricao'] ?>"
+                                data-nome="<?= $prod['sigla'] ?>"
                                 data-id="<?= $prod['id'];?>"
                                 class="delete btn btn-danger btn-sm w-100
-                                <?= $prod['destaque']?'d-none':''?>"
+                                
                                 >
                                 <?php 
                                 
@@ -142,4 +126,3 @@
  
 </body>
 </html>
-

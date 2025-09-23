@@ -3,8 +3,7 @@ include_once 'db.php';
 
 class Nivel{
     private $id;
-    private $usuarioId;
-    private $tag;
+    private $nivel;
     private $pdo;
     public function __construct(){
         $this->pdo = getConnection();
@@ -13,25 +12,19 @@ class Nivel{
         public function getId(){
         return $this->id; // não vamos criar setId???  proque o banco é quem atribui (autoincrements)
     }
-        public function getUsuarioId(){
-        return $this->usuarioId;
-    }
-    public function setUsuarioId(int $yusuarioId){
-        $this->usuarioId = $usuarioId;
-    }
+ 
 
-        public function getTag(){
-        return $this->tag;
+        public function getNivel(){
+        return $this->nivel;
     }
-    public function setTag(int $tag){
-        $this->tag = $tag;
+    public function setNivel(int $tag){
+        $this->nivel = $nivel;
     }
 
     public function Inserir():bool{
-    $sql = 'insert into niveis (usuario_id, tag) values(:usuario_id, :tag)';
+    $sql = 'insert into niveis (nivel) values(:nivel)';
     $cmd = $this->pdo->prepare($sql);
-    $cmd->bindValue(":usuario_id", $this->usuarioId);
-    $cmd->bindValue(":tag", $this->tag);
+    $cmd->bindValue(":nivel", $this->tag);
     $cmd->execute();
      if($cmd->execute()){
             $this->id = $this->pdo->lastInsertId();
@@ -40,8 +33,39 @@ class Nivel{
         return false;
 
     }
-
-
+        public function atualizarNivel(int $idUpdate):bool {
+            $id = $idUpdate;
+            if(!$this->id) return false;
+    
+            $sql = "UPDATE nivel SET 
+                nivel = :nivel,
+            
+                WHERE id = :id";
+            $cmd = $this->pdo->prepare($sql);
+            $cmd->bindValue(":nivel", $this->nivel); // (C#) cmd.Paramenters.AddWithValue("splogin", Login);
+  
+            $cmd->bindValue(":id", $this->id, PDO::PARAM_INT);
+    
+            return $cmd->execute();
+        }
+    public function buscarNivelPorId(int $id):array{
+        $sql = "select * from niveis where id = :id";
+        $cmd = $this->pdo->prepare($sql);
+        $cmd->bindValue(":id", $id);
+        $cmd->execute();
+        $dados = $cmd->fetch();
+    
+        return $dados;
+    }
+    public function excluirNivel(int $idExcluir):bool {
+            $this->id = $idExcluir;
+            if(!$this->id) return false;
+    
+            $sql = "delete from produtos where id = :id";
+            $cmd = $this->pdo->prepare($sql);
+            $cmd->bindValue(":id", $this->id, PDO::PARAM_INT);
+            return $cmd->execute();
+        }
 }
 
 
