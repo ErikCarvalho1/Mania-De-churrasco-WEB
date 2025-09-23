@@ -5,7 +5,7 @@
  $produtos = $produto->listar();
  $linhas = count($produtos);
 
- print_r($linhas)
+
 
 
 ?>
@@ -43,22 +43,22 @@
             </thead>
            
             <tbody>
-                    <!-- <?php foreach($produtos as $prod):?> -->
+                 <?php foreach($produtos as $prod):?> 
                     <tr>
                         <td class="d-none">
                             <?=$prod['id']?>
                         </td>
                         <td>
-                           <?=$prod = ['rotulo']?>
+                           <?=$prod['rotulo']?>
                         </td>
                         <td>
                            <?php 
-                            if($prod['destque']){
+                            if($prod['destaque']){
                                 echo '<i class = "bi bi-stra-fill text-danger"></i>';
                             }else{
                                 echo '<i class = "bi bi-check-circle-fill text-succes"></i>';
                             }
-                            echo '&nbs;'.$prod['descricao'];
+                            echo '&nbsp;'.$prod['descricao'];
                            ?>
                         </td>
                         <td>
@@ -83,7 +83,7 @@
                                 data-nome="<?= $prod['descricao'] ?>"
                                 data-id="<?= $prod['id'];?>"
                                 class="delete btn btn-danger btn-sm w-100
-                                <?= $prod['destaques']?'d-none':''?>"
+                                <?= $prod['destaque']?'d-none':''?>"
                                 >
                                 <?php 
                                 
@@ -126,17 +126,17 @@
 
     <script>
 
-        document.querySelectoAll('.delete').forEach(btn =>{
-            btn.addEventListener('click', function(){
-                let nome = this.getAttibute('data-nome')
-                let id = this.getAttibute('data-id')
+              document.querySelectorAll('.delete').forEach(btn =>{
+            btn.addEventListener('click',function(){
+                let nome = this.getAttribute('data-nome');
+                let id = this.getAttribute('data-id');
                 // console.log(id);
                 document.querySelector('span.nome').textContent = nome;
                 document.querySelector('a.delete-yes').setAttribute('href', 'produtos_excluir.php?id='+id)
                 let modal = new bootstrap.Modal(document.getElementById('modalEdit'));
                 modal.show();
             });
-        });    
+        });   
 
     </script>
  

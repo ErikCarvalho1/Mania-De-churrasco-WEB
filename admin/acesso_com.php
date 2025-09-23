@@ -1,35 +1,39 @@
 <?php 
-//autenticação do usuairo 
-//1 - definir nome da sessão 
-session_name('maniaa');
+// autenticação do usuário:
+// 1 - definir nome da sessão
+session_name('chulettaaa');
 session_start();
 
-//2 - Segurança: Verificar  se a sessão é Válida
+// $_SESSION['login_usuario'] = "Professor Everson";
+// $_SESSION['nome_da_sessao'] = "chulettaaa";
+
+// 2 - Segurança: Verificar se a sessão é válida
 if(!isset($_SESSION['login_usuario'])){
-    // Usuario não logado, redireciona oara  atela de login 
+    // Usuário não autenticado, redireciona para a tela de login
     header('location: login.php');
     exit;
 }
-//3 - Verificar se o nome da sessão corresponde a sessão atual 
+// 3 - Verifica se o nome da sessão corresponde a sessão atual
 if(!isset($_SESSION['nome_da_sessao'])){
-    $_SESSION['nome_da_sessao'] == session_name();
+    $_SESSION['nome_da_sessao'] = session_name();
 }elseif($_SESSION['nome_da_sessao']!== session_name()){
     session_destroy();
     header('location: login.php');
+    exit;    
 }
-//4 - segurança Extra: Valida o agente (usuario) e o IP
-if(!isset($_SESSION['ip_usuairo'])){
-    $_SESSION['ip_usuairo'] = $_SERVER['REMOTE_ADDR'];
+// 4 - Segurança Extra: valida o agente (usuário) e o IP
+if (!isset($_SESSION['ip_usuario'])){
+    $_SESSION['ip_usuario']= $_SERVER['REMOTE_ADDR'];
 }
 if(!isset($_SESSION['user_agent'])){
     $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
 }
-//5 - se IP ou navegador mudarem, invalida asessão
-if($_SESSION['ip_usuairo'] !== $_SERVER['HTTP_USER_AGENT'] ||
- $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT']){
+// 5 - Se IP ou navegador mudarem, invalida a sessão!
+if($_SESSION['ip_usuario']!== $_SERVER['REMOTE_ADDR'] ||
+$_SESSION['user_agent'] !== $_SERVER['HTTP_USER_AGENT']){
     session_destroy();
-    header('login.php');
+    header('location: login.php');
     exit;
- }
+}
 
 ?>
