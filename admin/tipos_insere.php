@@ -44,12 +44,12 @@ include_once '../class/tipo.php';
 <div class="row justify-content-center">
 <div class="col-12 col-sm-8 col-md-8">
 <h2 class="breadcrumb text-danger d-flex align-items-center">
-<a href="produtos_lista.php" class="me-2">
+<a href="tipos_lista.php" class="me-2">
 <button class="btn btn-danger">
 <i class="bi bi-chevron-left"></i>
 </button>
 </a>
-                Inserindo Produtos
+               Inserindo Tipos
 </h2>
  
             <div class="card shadow-sm">
@@ -72,9 +72,9 @@ include_once '../class/tipo.php';
 </div>
 </div>
  
-                        Resumo
+                     
  <div class="mb-3">
-<label for="rotulo" class="form-label">Resumo:</label>
+<label for="rotulo" class="form-label">Rotulo:</label>
 <div class="input-group">
 <span class="input-group-text"><i class="bi bi-card-text"></i></span>
 <textarea name="rotulo" id="rotulo" cols="30" rows="8"

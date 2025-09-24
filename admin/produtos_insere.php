@@ -19,7 +19,7 @@ if($_POST){
     $produto->setImagem($rand.$nome_img);
     if($produto->inserir()){
         header('location: produtos_lista.php');
-    }else{
+    }else{  
         // lembrar de remover a imagem carregada para a pasta IMAGES        
     }
 
@@ -138,30 +138,36 @@ if($_POST){
         </div>
     </div>
 </main>
-<script>  document.getElementById("imagemfile").onchange = function(){
-        var reader = new FileReader();
-        if(this.files[0].size>512000){
-            alert("A imagem deve ter no maximo 500KB")
-            $("#imagem").attr("src", "blank");
-            $("#imagem").hide();
-            $("#imagem").wrap('<form>').closest('form').get(0).reset();
-            $("#imagem").unwrap();
-            return false;
-        }
-        if($this.files[0].type.indexOf("image") == -1 ){
-            alert("Formato invalido! Escolha uma imagem. ")
-            $("#imagem").attr("src", "blank");
-            $("#imagem").hide();
-            $("#imagem").wrap('<form>').closest('form').get(0).reset();
-            $("#imagem").unwrap();
-            return false;
-        }
-        reader.onload = function(e){
-            document.getElmentById("imagem").src = e.target.result
-            $("#imagem").show();
-        }
-        reader.readAsDataURL(this.files[0])
+<script>
+document.getElementById("imagemfile").onchange = function(){
+    var file = this.files[0];
+    var reader = new FileReader();
+
+    // valida tamanho (500 KB)
+    if(file.size > 512000){
+        alert("A imagem deve ter no máximo 500KB");
+        this.value = ""; // reseta input
+        document.getElementById("imagem").src = "";
+        document.getElementById("imagem").style.display = "none";
+        return false;
     }
+
+    // valida formato
+    if(file.type.indexOf("image") === -1){
+        alert("Formato inválido! Escolha uma imagem.");
+        this.value = "";
+        document.getElementById("imagem").src = "";
+        document.getElementById("imagem").style.display = "none";
+        return false;
+    }
+
+    // pré-visualização
+    reader.onload = function(e){
+        document.getElementById("imagem").src = e.target.result;
+        document.getElementById("imagem").style.display = "block";
+    }
+    reader.readAsDataURL(file);
+}
 </script>
 </body>
 </html>

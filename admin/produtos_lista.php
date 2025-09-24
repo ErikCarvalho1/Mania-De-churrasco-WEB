@@ -54,7 +54,7 @@
                         <td>
                            <?php 
                             if($prod['destaque']){
-                                echo '<i class = "bi bi-stra-fill text-danger"></i>';
+                                echo '<i class = "bi bi-star-fill text-danger"></i>';
                             }else{
                                 echo '<i class = "bi bi-check-circle-fill text-succes"></i>';
                             }
@@ -68,7 +68,7 @@
                            <?= number_format($prod['valor'], 2 , ',' , '.')?>
                         </td>
                         <td>
-                            <img src="../images/<?=$prod['imagem']?>" width="= 200" class="img-fluid rounded">
+                            <img src="../images/<?=$prod['imagem']?>" width= " 200" class="img-fluid rounded">
                         </td>
                         <td>
                             <a href="produtos_atualiza.php?id=<?= $prod['id']; ?>"
@@ -109,6 +109,7 @@
                     <h4 class="modal-title">Vamos deletar?</h4>
                     <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="Fechar"></button>
                 </div>
+          
                 <div class="modal-body">
                     Deseja mesmo excluir o item?
                     <h4><span class="nome text-danger"></span></h4>
@@ -120,7 +121,9 @@
             </div>
         </div>
     </div>
- 
+ <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEdit">
+    Testar modal
+</button>
     <!-- JS Bootstrap 5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
