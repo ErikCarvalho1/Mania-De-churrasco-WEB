@@ -64,7 +64,6 @@ class Produto{
         $cmd->bindValue(":valor", $this->valor);
         $cmd->bindValue(":imagem", $this->imagem);
         $cmd->bindValue(":destaque", $this->destaque);
-        $cmd->execute();
         if($cmd->execute()){
             $this->id = $this->pdo->lastInsertId();
             return true;
@@ -132,7 +131,7 @@ class Produto{
                 resumo = :resumo,
                 valor = :valor,
                 imagem = :imagem,
-                destaque = : destaque
+                destaque = ".($this->destaques==true?1:0)."
                 WHERE id = :id";
             $cmd = $this->pdo->prepare($sql);
             $cmd->bindValue(":tipo_id", $this->tipoId); // (C#) cmd.Paramenters.AddWithValue("splogin", Login);
@@ -140,7 +139,7 @@ class Produto{
             $cmd->bindValue(":resumo", $this->resumo);
             $cmd->bindValue(":valor", $this->valor);
             $cmd->bindValue(":imagem", $this->imagem);
-            $cmd->bindValue(":destaque", $this->destaque);
+            // $cmd->bindValue(":destaque", (bool) $this->destaque);
             $cmd->bindValue(":id", $this->id, PDO::PARAM_INT);
     
             return $cmd->execute();
