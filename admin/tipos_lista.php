@@ -66,7 +66,7 @@
                             <button
                                 data-nome="<?= $prod['sigla'] ?>"
                                 data-id="<?= $prod['id'];?>"
-                                class="delete btn btn-danger btn-sm w-100
+                                class="delete btn btn-danger btn-sm w-100"
                                 
                                 >
                                 <?php 
@@ -86,12 +86,14 @@
     </main>
  
     <!-- Modal -->
+     
     <div class="modal fade" id="modalEdit" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Vamos deletar?</h4>
                     <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="Fechar"></button>
+                    
                 </div>
                 <div class="modal-body">
                     Deseja mesmo excluir o item?
@@ -104,13 +106,13 @@
             </div>
         </div>
     </div>
- 
+
     <!-- JS Bootstrap 5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
 
-              document.querySelectorAll('.delete').forEach(btn =>{
+        document.querySelectorAll('.delete').forEach(btn => {
             btn.addEventListener('click',function(){
                 let nome = this.getAttribute('data-nome');
                 let id = this.getAttribute('data-id');
@@ -120,8 +122,8 @@
                 let modal = new bootstrap.Modal(document.getElementById('modalEdit'));
                 modal.show();
             });
-        });   
-
+        });         
+        
     </script>
  
 </body>

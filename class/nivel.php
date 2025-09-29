@@ -17,14 +17,14 @@ class Nivel{
         public function getNivel(){
         return $this->nivel;
     }
-    public function setNivel(int $tag){
+    public function setNivel(string $nivel){
         $this->nivel = $nivel;
     }
 
     public function Inserir():bool{
     $sql = 'insert into niveis (nivel) values(:nivel)';
     $cmd = $this->pdo->prepare($sql);
-    $cmd->bindValue(":nivel", $this->tag);
+    $cmd->bindValue(":nivel", $this->nivel);
     $cmd->execute();
      if($cmd->execute()){
             $this->id = $this->pdo->lastInsertId();

@@ -33,16 +33,17 @@ public function getId(){
 
    }
 
-   public function inserirTipo():bool{
-    $sql = 'insert tipos (sigla, rotulo) values(:sigla, :rotulo)';
+public function inserirTipo():bool{
+    $sql = "INSERT INTO tipos (sigla, rotulo) VALUES (:sigla, :rotulo)";
     $cmd = $this->pdo->prepare($sql);
-    $cmd->execute();
+    $cmd->bindValue(":sigla", $this->sigla);
+    $cmd->bindValue(":rotulo", $this->rotulo);
     if($cmd->execute()){
-        $this->id = $this-pdo->lastInsertId();
+        $this->id = $this->pdo->lastInsertId();
         return true;
     }
     return false;
-   }
+}
 
    public function atualizarTipo(int $idUpdate):bool {
             $id = $idUpdate;
