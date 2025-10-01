@@ -10,7 +10,7 @@ $tipos = $tipo_lista->fetchAll();
 
 ?>
 
-<nav class="navbar navbar-expand-md navbar-dark fixed-top ">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top ">
             <div class="container-fluid">
                 <a href="index.php" class="navbar-brand"> 
                     <img src="images/Logo Mania.png" alt="LogoTipo " width="190"/>
@@ -34,7 +34,7 @@ $tipos = $tipo_lista->fetchAll();
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">DESTAQUES</a>
+                            <a href=" #" class="nav-link">DESTAQUES</a>
                         </li>
                        <li class="nav-item dropdown">
                 <a

@@ -27,8 +27,11 @@
     </header>
     <main class = "container" >  
         <!-- area de carousel  -->
-         <?php include "carousel.php"?>
+         <?php include "carousel.php";?>
          <!-- area de destaque   -->
+          <!-- reserva mesa -->
+           <?php include "anuncio_reserva.php";?>
+           <!-- reserva mesa -->
           <a class="pt-6" name="destaques">&nbsp;</a>
           <?php include "destaques.php";?>
           <!-- area geral dos produtos -->

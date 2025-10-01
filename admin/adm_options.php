@@ -52,8 +52,8 @@
     <div class="col-sm-6 col-md-4">
       <div class="card border-info h-100 text-center">
         <div class="card-body">
-          <img src="../images/icone_user.png" alt="Usuários" class="mb-3" style="max-height:80px;">
-          <h5 class="card-title text-info">USUÁRIOS</h5>
+          <img src="../images/icons8-open-book-50.png" alt="Usuários" class="mb-3" style="max-height:80px;">
+          <h5 class="card-title text-info">Reservas</h5>
           <div class="d-grid gap-2">
             <a href="usuarios_lista.php" class="btn btn-info">LISTAR</a>
             <a href="usuarios_insere.php" class="btn btn-info">INSERIR</a>
