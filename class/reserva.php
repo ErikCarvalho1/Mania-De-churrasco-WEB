@@ -23,6 +23,6 @@ class Reserva{
         return $this->id; // não vamos criar setId???  proque o banco é quem atribui (autoincrements)
         
     
-
+    }
 }
 ?>
