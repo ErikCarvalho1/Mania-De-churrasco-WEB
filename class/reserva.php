@@ -6,14 +6,14 @@ include_once "db.php";
 class Reserva {
     // atributos
     private $id;
-    private $idClientes;
-    private $dataReserva;
-    private $hora;
-    private $qtdPessoas;
+    private $id_clientes;
+    private $data_reserva;
+    private $horario;
+    private $qtd_pessoas;
     private $motivo;
-    private $statusRsv;
-    private $dataCriacao;
-    private $dataAtualizacao;
+    private $status_rsv;
+    private $data_criacao;
+    private $data_atualizacao;
 
     private $pdo;
 
@@ -26,28 +26,28 @@ class Reserva {
         return $this->id;
     }
     public function getIdClientes() {
-        return $this->idClientes;
+        return $this->id_clientes;
     }
-    public function setIdClientes($idClientes) {
-        $this->idClientes = $idClientes;
+    public function setIdClientes($id_clientes) {
+        $this->id_clientes = $id_clientes;
     }
     public function getDataReserva() {
-        return $this->dataReserva;
+        return $this->data_reserva;
     }
-    public function setDataReserva($dataReserva) {
-        $this->dataReserva = $dataReserva;
+    public function setDataReserva($data_reserva) {
+        $this->data_reserva = $data_reserva;
     }
     public function getHora() {
-        return $this->hora;
+        return $this->horario;
     }
-    public function setHora($hora) {
-        $this->hora = $hora;
+    public function setHora($horario) {
+        $this->horario = $horario;
     }
     public function getQtdPessoas() {
-        return $this->qtdPessoas;
+        return $this->qtd_pessoas;
     }
     public function setQtdPessoas($qtdPessoas) {
-        $this->qtdPessoas = $qtdPessoas;
+        $this->qtd_pessoas = $qtdPessoas;
     }
     public function getMotivo() {
         return $this->motivo;
@@ -56,37 +56,36 @@ class Reserva {
         $this->motivo = $motivo;
     }
     public function getStatus() {
-        return $this->status;
+        return $this->status_rsv;
     }
     public function setStatus($status) {
-        $this->status = $status;
+        $this->status_rsv = $status;
     }
     public function getDataCriacao() {
-        return $this->dataCriacao;
+        return $this->data_criacao;
     }
     public function setDataCriacao($dataCriacao) {
-        $this->dataCriacao = $dataCriacao;
+        $this->data_criacao = $dataCriacao;
     }
     public function getDataAtualizacao() {
-        return $this->dataAtualizacao;
+        return $this->data_atualizacao;
     }
     public function setDataAtualizacao($dataAtualizacao) {
-        $this->dataAtualizacao = $dataAtualizacao;
+        $this->data_atualizacao = $dataAtualizacao;
     }
 
-    // Métodos CRUD
     public function inserir(): bool {
-        $sql = "INSERT INTO reservas (idClientes, dataReserva, hora, qtdPessoas, motivo, statusRsv, dataCriacao, dataAtualizacao)
-                VALUES (:id_clientes, :dataReserva, :horario, :qtd_pessoas, :motivo, :status_rsv, :data_criacao, :data_atualizacao)";
+        $sql = "INSERT INTO reservas (id_clientes, data_reserva, horario, qtd_pessoas, motivo, status_rsv, data_criacao, data_atualizacao)
+                VALUES (:id_clientes, :data_reserva, :horario, :qtd_pessoas, :motivo, :status_rsv, :data_criacao, :data_atualizacao)";
         $cmd = $this->pdo->prepare($sql);
-        $cmd->bindValue(":idClientes", $this->idClientes);
-        $cmd->bindValue(":dataReserva", $this->dataReserva);
-        $cmd->bindValue(":hora", $this->hora);
-        $cmd->bindValue(":qtdPessoas", $this->qtdPessoas);
+        $cmd->bindValue(":id_clientes", $this->id_clientes);
+        $cmd->bindValue(":data_reserva", $this->data_reserva);
+        $cmd->bindValue(":horario", $this->horario);
+        $cmd->bindValue(":qtd_pessoas", $this->qtd_pessoas);
         $cmd->bindValue(":motivo", $this->motivo);
-        $cmd->bindValue(":status", $this->status);
-        $cmd->bindValue(":dataCriacao", $this->dataCriacao);
-        $cmd->bindValue(":dataAtualizacao", $this->dataAtualizacao);
+        $cmd->bindValue(":status_rsv", $this->status_rsv);
+        $cmd->bindValue(":data_criacao", $this->data_criacao);
+        $cmd->bindValue(":data_atualizacao", $this->data_atualizacao);
         if ($cmd->execute()) {
             $this->id = $this->pdo->lastInsertId();
             return true;
@@ -94,46 +93,5 @@ class Reserva {
         return false;
     }
 
-    public function atualizar(int $idUpdate): bool {
-        $sql = "UPDATE reservas SET 
-                    idClientes = :idClientes,
-                    dataReserva = :dataReserva,
-                    hora = :hora,
-                    qtdPessoas = :qtdPessoas,
-                    motivo = :motivo,
-                    status = :status,
-                    dataAtualizacao = :dataAtualizacao
-                WHERE id = :id";
-        $cmd = $this->pdo->prepare($sql);
-        $cmd->bindValue(":idClientes", $this->idClientes);
-        $cmd->bindValue(":dataReserva", $this->dataReserva);
-        $cmd->bindValue(":hora", $this->hora);
-        $cmd->bindValue(":qtdPessoas", $this->qtdPessoas);
-        $cmd->bindValue(":motivo", $this->motivo);
-        $cmd->bindValue(":status", $this->status);
-        $cmd->bindValue(":dataAtualizacao", $this->dataAtualizacao);
-        $cmd->bindValue(":id", $idUpdate, PDO::PARAM_INT);
-        return $cmd->execute();
-    }
-
-    public function buscarPorId(int $id): array {
-        $sql = "SELECT * FROM reservas WHERE id = :id";
-        $cmd = $this->pdo->prepare($sql);
-        $cmd->bindValue(":id", $id, PDO::PARAM_INT);
-        $cmd->execute();
-        return $cmd->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function excluir(int $idExcluir): bool {
-        $sql = "DELETE FROM reservas WHERE id = :id";
-        $cmd = $this->pdo->prepare($sql);
-        $cmd->bindValue(":id", $idExcluir, PDO::PARAM_INT);
-        return $cmd->execute();
-    }
-
-    public function listar(): array {
-        $cmd = $this->pdo->query("SELECT * FROM reservas ORDER BY id DESC");
-        return $cmd->fetchAll(PDO::FETCH_ASSOC);
-    }
 }
 ?>
