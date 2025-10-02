@@ -1,4 +1,27 @@
+<?php
+include_once "../class/reserva.php";
 
+$reserva = new Reserva();
+
+// Exemplo: idClientes pode vir de sessão ou ser fixo para teste
+$reserva->setIdClientes(1); // ajuste conforme seu sistema
+
+$reserva->setDataReserva($_POST['dataReserva']);
+$reserva->setHora($_POST['hora']);
+$reserva->setQtdPessoas($_POST['qtdPessoas']);
+$reserva->setMotivo($_POST['motivo']);
+$reserva->setStatus('pendente');
+$reserva->setDataCriacao(date('Y-m-d H:i:s'));
+$reserva->setDataAtualizacao(date('Y-m-d H:i:s'));
+
+if ($reserva->inserir()) {
+    header("Location: reserva_mesa.php?sucesso=1");
+    exit;
+} else {
+    header("Location: reserva_mesa.php?erro=1");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,20 +32,15 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
-    <!-- Bootstrap 5.3 local  - totalmente moderno e atualizado! -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <!-- CSS local (Nosso) -->
-    <link rel="stylesheet" href="css/style.css" />
-    <!-- Bootstrap JS com parametro defer, que permite a execução js após o carregamento DOM -->
-    <script src="js/bootstrap.min.js" defer></script>
-    <script src="js/bootstrap.bundle.min.js" defer></script>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
 
     <title>Mania de Churrasco</title>
  </head>
  <body class="fundo-fixo">
     <header>
     <!-- área de menu -->
-     <?php include "menu_publico.php"?>
+     <?php include "..//menu_publico.php"?>
     </header>
         <main class="container my-5">
        
@@ -49,3 +67,4 @@
     </form>
 </main>        
     </body>
+</html>
