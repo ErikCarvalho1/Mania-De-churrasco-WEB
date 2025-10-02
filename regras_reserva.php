@@ -41,7 +41,7 @@
         </tbody>
     </table> 
   
-    <div class="botao "><a href="reserva_mesa.php" class="btn btn-danger justify-content-center">
+    <div class="botao "><a href="cliente/login.php" class="btn btn-danger justify-content-center">
     Faça Sua Reserva
 </a></div>
 </div> 
