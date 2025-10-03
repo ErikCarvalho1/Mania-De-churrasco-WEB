@@ -29,11 +29,11 @@
                 <tr>
                     <th class="d-none">ID</th>
                     <th>Data da Reserva</th>
-                    <th>DESCRIÇÃO</th>
-                    <th>RESUMO</th>
-                    <th>VALOR</th>
-                    <th>IMAGEM</th>
-                     <th>IMAGEM</th>
+                    <th>Horário</th>
+                    <th>Quantidade de Pessoas</th>
+                    <th>Motivo</th>
+                    <th>Status</th>
+                     <th>Data da Atualização</th>
 
                     <th>
                         <a href="reserva_insere.php" target="_self" class="btn btn-primary btn-sm w-100">
