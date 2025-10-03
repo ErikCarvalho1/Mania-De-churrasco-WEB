@@ -55,8 +55,8 @@
           <img src="../images/icons8-open-book-50.png" alt="Usuários" class="mb-3" style="max-height:80px;">
           <h5 class="card-title text-info">Reservas</h5>
           <div class="d-grid gap-2">
-            <a href="usuarios_lista.php" class="btn btn-info">LISTAR</a>
-            <a href="usuarios_insere.php" class="btn btn-info">INSERIR</a>
+            <a href="reservas_listas.php" class="btn btn-info">LISTAR</a>
+            <a href="reserva_insere.php" class="btn btn-info">INSERIR</a>
           </div>
         </div>
       </div>

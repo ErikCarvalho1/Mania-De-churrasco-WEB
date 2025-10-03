@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <!-- Logo -->
@@ -15,7 +20,10 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <span class="btn btn-danger disabled me-2" style="cursor: default;">
-            Olá, <?=($_SESSION['login_usuario'])?>!
+           <?php
+$nomeUsuario = $_SESSION['login_usuario'] ?? 'Visitante';
+?>
+Olá, <?= htmlspecialchars($nomeUsuario) ?>!
           </span>
         </li>
         <li class="nav-item active">
