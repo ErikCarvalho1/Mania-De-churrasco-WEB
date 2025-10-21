@@ -2,6 +2,8 @@
 <?php 
 include 'acesso_com.php';
 include_once '../class/produto.php';
+$min = 0.01;
+$max = 999.99;
 if($_POST){
     if(isset($_POST['enviar'])){
         $nome_img = $_FILES['imagemfile']['name'];
@@ -14,9 +16,13 @@ if($_POST){
     $produto->setTipoId($_POST['id_tipo']);
     $produto->setDestaque($_POST['destaque']);
     $produto->setDescricao($_POST['descricao']);
-    $produto->setResumo($_POST['resumo']);
+    $produto->setResumo($_POST ['resumo']);
     $produto->setValor($_POST['valor']);
     $produto->setImagem($rand.$nome_img);
+    if($valor = $_POST['valor'] > $max || $valor < $min){
+        echo "<script>alert('Valor inválido! O valor deve estar entre R$ $min e R$ $max'); history.back();</script>";
+        exit;
+    }
     if($produto->inserir()){
         header('location: produtos_lista.php');
     }else{  
@@ -24,6 +30,7 @@ if($_POST){
     }
 
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -169,5 +176,7 @@ document.getElementById("imagemfile").onchange = function(){
     reader.readAsDataURL(file);
 }
 </script>
+
+
 </body>
 </html>
