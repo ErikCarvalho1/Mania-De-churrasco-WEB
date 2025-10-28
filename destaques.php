@@ -1,6 +1,6 @@
 <?php 
 include "class/produto.php";
-$produto = new Produto();
+use App\Produto;
 $produtos = $produto->listar(1); 
 
 

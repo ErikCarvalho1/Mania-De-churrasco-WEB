@@ -1,4 +1,6 @@
 <?php 
+namespace App;
+use PDO;
 function getConnection(): PDO{//retorna um objeto PDO 
     static $pdo; 
     if ($pdo === null){ // = (atribuição) / == (comparação) / == (comparação  tipo e valor)

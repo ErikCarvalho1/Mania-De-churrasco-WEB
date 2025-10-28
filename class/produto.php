@@ -1,4 +1,6 @@
 <?php 
+namespace App;
+
  include_once "db.php";
 
 class Produto{
@@ -78,7 +80,7 @@ class Produto{
         elseif ($destaque == 1) {
             $cmd = $this->pdo->query("select * from vw_produtos where destaque = 1 order by id desc");
         }
-        return $cmd->fetchAll(PDO::FETCH_ASSOC); // pode retornar nenhum ou mais de um produto
+        return $cmd->fetchAll(); // pode retornar nenhum ou mais de um produto
     }
     // buscar produtos por id 
     public function buscarPorId(int $id):array{
@@ -131,7 +133,8 @@ class Produto{
                 resumo = :resumo,
                 valor = :valor,
                 imagem = :imagem,
-                destaque = ".($this->destaques==true?1:0)."
+                destaque = ".($this->destaque
+                == true?1:0)."
                 WHERE id = :id";
             $cmd = $this->pdo->prepare($sql);
             $cmd->bindValue(":tipo_id", $this->tipoId); // (C#) cmd.Paramenters.AddWithValue("splogin", Login);
@@ -140,7 +143,7 @@ class Produto{
             $cmd->bindValue(":valor", $this->valor);
             $cmd->bindValue(":imagem", $this->imagem);
             // $cmd->bindValue(":destaque", (bool) $this->destaque);
-            $cmd->bindValue(":id", $this->id, PDO::PARAM_INT);
+            $cmd->bindValue(":id", $this->id);
     
             return $cmd->execute();
         }
@@ -151,7 +154,7 @@ class Produto{
     
             $sql = "delete from produtos where id = :id";
             $cmd = $this->pdo->prepare($sql);
-            $cmd->bindValue(":id", $this->id, PDO::PARAM_INT);
+            $cmd->bindValue(":id", $this->id);
             return $cmd->execute();
         }
 
