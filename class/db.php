@@ -2,7 +2,7 @@
 function getConnection(): PDO{//retorna um objeto PDO 
     static $pdo; 
     if ($pdo === null){ // = (atribuição) / == (comparação) / == (comparação  tipo e valor)
-        $pdo = new  PDO("mysql:host=10.91.47.99;dbname=tdszuphpdb01",
+        $pdo = new  PDO("mysql:host=10.91.47.99;dbname=zentralhead",
         "root",
         "123",
         //  $pdo = new  PDO("mysql:host=localhost;dbname=tdszuphpdb01",

@@ -4,7 +4,7 @@
 class Produto{
     // atributos
     private $id;
-    private $tipoId;
+    private $categoriasId;
     private $descricao;
     private $resumo;
     private $valor;
@@ -18,11 +18,11 @@ class Produto{
     public function getId(){
         return $this->id; // não vamos criar setId???  proque o banco é quem atribui (autoincrements)
     }
-    public function getTipoId(){
-        return $this->tipoId;
+    public function getcategoriasId(){
+        return $this->categoriasId;
     }
-    public function setTipoId(int $tipoId){
-        $this->tipoId = $tipoId;
+    public function setcategoriasId(int $categoriasId){
+        $this->categoriasId = $categoriasId;
     }
     public function getDescricao(){
         return $this->descricao;
@@ -56,14 +56,16 @@ class Produto{
     }
 // inserindo um produto
     public function inserir():bool{
-        $sql = "insert into produtos (tipo_id, descricao, resumo, valor, imagem, destaque) values(:tipo_id, :descricao, :resumo, :valor, :imagem, :destaque)";
+        $sql = "INSERT INTO produtos (categoria_id, descricao, resumo, valor, imagem, destaque)
+    VALUES (:categoria_id, :descricao, :resumo, :valor, :imagem, :destaque)
+";
         $cmd = $this->pdo->prepare($sql);
-        $cmd->bindValue(":tipo_id", $this->tipoId); // (C#) cmd.Paramenters.AddWithValue("splogin", Login);
+        $cmd->bindValue(":categoria_id", $this->categoriasId); // (C#) cmd.Paramenters.AddWithValue("splogin", Login);
         $cmd->bindValue(":descricao", $this->descricao);
         $cmd->bindValue(":resumo", $this->resumo);
         $cmd->bindValue(":valor", $this->valor);
         $cmd->bindValue(":imagem", $this->imagem);
-        $cmd->bindValue(":destaque", $this->destaque);
+        $cmd->bindValue(":destaque", (int)$this->destaque, PDO::PARAM_INT);
         if($cmd->execute()){
             $this->id = $this->pdo->lastInsertId();
             return true;
@@ -90,7 +92,7 @@ class Produto{
         // if($cmd->rowCount() > 0){
         //     $dados = $cmd->fetch(PDO::FETCH_ASSOC);
         //     $this->id = $dados['id'];
-        //     $this->tipoId = $dados['tipo_id'];
+        //     $this->categoriasId = $dados['categoria_id'];
         //     $this->descricao = $dados['descricao'];
         //     $this->resumo = $dados['resumo'];
         //     $this->valor = $dados['valor'];
@@ -101,11 +103,11 @@ class Produto{
         return $dados;
     }
 
-        // buscar produtos por tipo_id 
-        public function buscarPorTipoId(int $tipoId):array{
-            $sql = "select * from vw_produtos where tipo_id = :tipo_id";
+        // buscar produtos por categoria_id 
+        public function buscarPorcategoriasId(int $categoriasId):array{
+            $sql = "select * from vw_produtos where categoria_id = :categoria_id";
             $cmd = $this->pdo->prepare($sql);
-            $cmd->bindValue(":tipo_id", $tipoId);
+            $cmd->bindValue(":categoria_id", $categoriasId);
             $cmd->execute();
             $dados = $cmd->fetchAll(); // pode retornar nenhum ou mais de um produto
             return $dados;
@@ -126,7 +128,7 @@ class Produto{
             if(!$this->id) return false;
     
             $sql = "UPDATE produtos SET 
-                tipo_id = :tipo_id,
+                categoria_id = :categoria_id,
                 descricao = :descricao, 
                 resumo = :resumo,
                 valor = :valor,
@@ -134,7 +136,7 @@ class Produto{
                 destaque = ".($this->destaques==true?1:0)."
                 WHERE id = :id";
             $cmd = $this->pdo->prepare($sql);
-            $cmd->bindValue(":tipo_id", $this->tipoId); // (C#) cmd.Paramenters.AddWithValue("splogin", Login);
+            $cmd->bindValue(":categoria_id", $this->categoriasId); // (C#) cmd.Paramenters.AddWithValue("splogin", Login);
             $cmd->bindValue(":descricao", $this->descricao);
             $cmd->bindValue(":resumo", $this->resumo);
             $cmd->bindValue(":valor", $this->valor);

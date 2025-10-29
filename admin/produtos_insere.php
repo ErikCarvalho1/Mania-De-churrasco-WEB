@@ -2,35 +2,27 @@
 <?php 
 include 'acesso_com.php';
 include_once '../class/produto.php';
-$min = 0.01;
-$max = 999.99;
 if($_POST){
     if(isset($_POST['enviar'])){
         $nome_img = $_FILES['imagemfile']['name'];
         $tmp_img = $_FILES['imagemfile']['tmp_name'];
-        $rand = rand(100001, 999999);
-        $dir_imagem = "../images/produtos/".$rand.$nome_img;
-        move_uploaded_file($tmp_img, $dir_imagem);
+       
     }
     $produto  = new Produto();
-    $produto->setTipoId($_POST['id_tipo']);
+    $produto->setcategoriasId($_POST['categorias_id']);
     $produto->setDestaque($_POST['destaque']);
     $produto->setDescricao($_POST['descricao']);
-    $produto->setResumo($_POST ['resumo']);
+    $produto->setResumo($_POST['resumo']);
+    $produto->setResumo($_POST['imagem']);
     $produto->setValor($_POST['valor']);
-    $produto->setImagem($rand.$nome_img);
-    if($valor = $_POST['valor'] > $max || $valor < $min){
-        echo "<script>alert('Valor inválido! O valor deve estar entre R$ $min e R$ $max'); history.back();</script>";
-        exit;
-    }
+    
     if($produto->inserir()){
-        header('location: produtos_lista.php');
+        header('location: produtos.php');
     }else{  
         // lembrar de remover a imagem carregada para a pasta IMAGES        
     }
 
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -66,11 +58,11 @@ if($_POST){
 
                         <!-- Tipo -->
                         <div class="mb-3">
-                            <label for="id_tipo" class="form-label">Tipo:</label>
+                            <label for="categorias_id" class="form-label">Tipo:</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-list-task"></i></span>
-                                <select name="id_tipo" id="id_tipo" class="form-select" required>
-                                    <option value="1">Churrasco</option>
+                                <select name="categorias_id" id="categorias_id" class="form-select" required>
+                                    <option value="1">2</option>
                                     <option value="2">Sobremesa</option>
                                     <option value="3">Bebidas</option>
                                 </select>
