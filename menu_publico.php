@@ -1,7 +1,7 @@
 <?php 
 
 include_once "class/db.php";
-
+use App\Produto;
 
 $pdo = getConnection();
 $tipo_lista = $pdo->query("select * from tipos");

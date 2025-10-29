@@ -1,8 +1,9 @@
 <?php 
 include_once "class/produto.php";
+use App\Produto;
 if(isset($_GET['id'])){
     $id = $_GET['id'];
-    $produto = new Produto();
+   
     $prod = $produto->buscarPorId($id); //  
     // print_r($produto_retorno);
     // exit;
